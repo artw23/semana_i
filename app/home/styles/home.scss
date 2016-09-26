@@ -1,0 +1,21 @@
+@import "settings/settings";
+@import "foundation.scss";
+
+h1{
+  color:#f11610;
+  font-size: rem-calc(22px);
+  font-weight: bold;
+}
+
+img{
+  padding-right: 30px;
+}
+
+.container{
+  margin-top: 30px;
+}
+
+.business-partner{
+    color:#f79956;
+    margin-top: 20vh;
+}

@@ -1,0 +1,50 @@
+<!-- Main -->
+  <div id="main-wrapper">
+    <div class="container">
+      <div class="row" [hidden]="!hideList">
+          <div class="12u">
+            <header class="major">
+              <h2>Libros</h2>
+            </header>
+          <!-- Portfolio -->
+          <section>
+              <div class="row">
+                <div *ngFor="let libro of libros" class="4u 12u(mobile)">
+                  <section class="box">
+                    <a href="#" class="image featured"><img src="{{ libro.imagen }}" alt="" /></a>
+                    <header>
+                      <h3>{{ libro.titulo }}</h3>
+                    </header>
+                    <p>{{ libro.descripcion }}</p>
+                    <footer>
+                      <a class="button alt" (click)="fn(libro.id)">Contesta encuesta</a>
+                    </footer>
+                  </section>
+                </div>
+              </div>
+            </section>
+          </div>
+      </div>
+      <div class="row" [hidden]="hideList">
+        <div class="12u">
+          <header class="major">
+            <h2>Encuesta de {{nombreDeLaEncuesta}}</h2>
+          </header>
+          <section>
+            <form class="" action="index.html" method="post">
+              <div *ngFor="let pregunta of preguntas[encuestaActualId].preguntas"  class="row">
+                <div class="12u">
+                  <label for="">{{pregunta.nombre}}</label>
+                  <div *ngFor="let opcion of pregunta.respuestas" class="">
+                    <input type="radio" class="" value="{{opcion}}" name="{{pregunta.nombre}}">{{opcion}}
+                  </div>
+                </div>
+              </div>
+            </form>
+            <a class="button alt" (click)="submit()">Enviar</a>
+            <a class="button alt" (click)="back()">Cancelar</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>

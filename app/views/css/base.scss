@@ -1,0 +1,64 @@
+@import "settings/settings";
+@import "foundation.scss";
+
+.title-bar{
+  background-color: #FFFFFF;
+  margin-left: 15px;
+  @media #{$medium-up} {
+    margin-left: 0px;
+  }
+
+}
+
+.title-bar-title{
+  width: 110px;
+  margin-left: 30vw;
+}
+
+.top-bar{
+
+
+  @media #{$medium-up} {
+
+    .top-bar-title{
+      width:200px;
+    }
+
+    margin-left: 10vw;
+    margin-right: 10vw;
+    background-color: #FFFFFF;
+
+    ul{
+      background-color: #FFFFFF;
+    }
+
+    a{
+      color: #6c6c7b;
+    }
+
+    .top-bar-right{
+      margin-top: 40px;
+
+      li{
+        a{
+          margin-top: -15px;
+          padding-top: 15px;
+          padding-bottom: 1;
+          &:hover{
+            color: #000000;
+          }
+
+          &.active{
+            color: #000000;
+          }
+        }
+        border-right: 2px solid #000;
+      }
+
+      li:last-child{
+        border-right: none;
+      }
+    }
+  }
+
+}
