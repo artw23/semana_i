@@ -2,7 +2,7 @@
 1 verbose cli [ '/usr/local/Cellar/node/6.6.0/bin/node',
 1 verbose cli   '/usr/local/bin/npm',
 1 verbose cli   'start' ]
-2 info using npm@3.10.7
+2 info using npm@3.10.8
 3 info using node@v6.6.0
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle angular2-quickstart@1.0.0~prestart: angular2-quickstart@1.0.0
@@ -30,7 +30,7 @@
 17 error Darwin 16.0.0
 18 error argv "/usr/local/Cellar/node/6.6.0/bin/node" "/usr/local/bin/npm" "start"
 19 error node v6.6.0
-20 error npm  v3.10.7
+20 error npm  v3.10.8
 21 error code ELIFECYCLE
 22 error angular2-quickstart@1.0.0 start: `tsc && concurrently "npm run tsc:w" "npm run lite" "gulp watch" `
 22 error Exit status 2
