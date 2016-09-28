@@ -1,0 +1,37 @@
+<!-- Main -->
+  <div id="main-wrapper">
+    <div class="container">
+
+      <div class="row" [hidden]="!showList">
+          <div class="12u">
+            <header class="major">
+              <h2>Premios</h2>
+            </header>
+          <!-- Portfolio -->
+          <section>
+              <div class="row">
+                <h4>Actualmente eres nivel 3, sigue contestando encuestas para subir de nivel y ganar mas premios</h4>  
+              </div>
+              <div class="row" *ngFor="let genero of generos">
+                <h2>{{genero}}</h2>
+                <div class="row">
+                  <div *ngFor="let libro of libros" class="4u 12u(mobile)">
+                    <section class="box">
+                      <a href="#" class="image featured"><img src="{{ libro.imagen }}" alt="" /></a>
+                      <header>
+                        <h3>{{ libro.titulo }}</h3>
+                      </header>
+                      <p>{{ libro.descripcion }}</p>
+                      <footer>
+                        <a class="btn btn-primary" (click)="fn(libro.id)">Contesta encuesta</a>
+                        <a class="btn btn-default" (click)="fn2(libro.id)">Sugerir pregunta</a>
+                      </footer>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+      </div>
+    </div>
+</div>

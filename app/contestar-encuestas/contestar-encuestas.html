@@ -1,50 +1,123 @@
 <!-- Main -->
   <div id="main-wrapper">
     <div class="container">
-      <div class="row" [hidden]="!hideList">
+
+
+
+      <div class="row" [hidden]="!showList">
           <div class="12u">
             <header class="major">
               <h2>Libros</h2>
             </header>
           <!-- Portfolio -->
           <section>
-              <div class="row">
-                <div *ngFor="let libro of libros" class="4u 12u(mobile)">
-                  <section class="box">
-                    <a href="#" class="image featured"><img src="{{ libro.imagen }}" alt="" /></a>
-                    <header>
-                      <h3>{{ libro.titulo }}</h3>
-                    </header>
-                    <p>{{ libro.descripcion }}</p>
-                    <footer>
-                      <a class="button alt" (click)="fn(libro.id)">Contesta encuesta</a>
-                    </footer>
-                  </section>
+              <div class="row" *ngFor="let genero of generos">
+                <h2>{{genero}}</h2>
+                <div class="row">
+                  <div *ngFor="let libro of libros" class="4u 12u(mobile)">
+                    <section class="box">
+                      <a href="#" class="image featured"><img src="{{ libro.imagen }}" alt="" /></a>
+                      <header>
+                        <h3>{{ libro.titulo }}</h3>
+                      </header>
+                      <p>{{ libro.descripcion }}</p>
+                      <footer>
+                        <a class="btn btn-primary" (click)="fn(libro.id)">Contesta encuesta</a>
+                        <a class="btn btn-default" (click)="fn2(libro.id)">Sugerir pregunta</a>
+                      </footer>
+                    </section>
+                  </div>
                 </div>
               </div>
             </section>
           </div>
       </div>
-      <div class="row" [hidden]="hideList">
+
+
+
+      <div class="row" [hidden]="!showSurvey">
         <div class="12u">
           <header class="major">
             <h2>Encuesta de {{nombreDeLaEncuesta}}</h2>
           </header>
           <section>
-            <form class="" action="index.html" method="post">
-              <div *ngFor="let pregunta of preguntas[encuestaActualId].preguntas"  class="row">
-                <div class="12u">
-                  <label for="">{{pregunta.nombre}}</label>
-                  <div *ngFor="let opcion of pregunta.respuestas" class="">
-                    <input type="radio" class="" value="{{opcion}}" name="{{pregunta.nombre}}">{{opcion}}
+            <div class="row">
+              <div class="8u">
+                <form class="" action="index.html" method="post">
+                  <div *ngFor="let pregunta of preguntas[encuestaActualId].preguntas"  class="row">
+                    <div class="12u">
+                      <label for="">{{pregunta.nombre}}</label>
+                      <div *ngFor="let opcion of pregunta.respuestas" class="">
+                        <input type="radio" class="" value="{{opcion}}" name="{{pregunta.nombre}}">{{opcion}}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                  <br><br>
+                </form>
               </div>
-            </form>
+              <div class="4u">
+                <h3>Top Scores</h3>
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let usuario of topUsuarios">
+                    <span class="badge">{{usuario.puntuacion}}</span>
+                    {{usuario.nombre}}
+                  </li>
+                </ul>
+              </div>
+            </div>
             <a class="button alt" (click)="submit()">Enviar</a>
             <a class="button alt" (click)="back()">Cancelar</a>
           </section>
         </div>
+      </div>
+
+      <div class="row" [hidden]="!showCreate">
+        <div class="12u">
+          <header class="major">
+            <h2>Encuesta de {{nombreDeLaEncuesta}}</h2>
+          </header>
+          <section>
+            <div class="row">
+              <div class="col-sm-12">
+                <style media="screen">
+                  .input-group{
+                    min-width: 600px;
+                  }
+                </style>
+                <form class="" action="index.html" method="post">
+
+                  <label for="basic-url">Escribe tu pregunta</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  </div>
+
+                  <label for="basic-url">Respuesta correcta</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  </div>
+
+                  <label for="basic-url">Respuesta incorrecta 1</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  </div>
+
+                  <label for="basic-url">Respuesta incorrecta 2</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  </div>
+
+                  <label for="basic-url">Respuesta incorrecta 3</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                  </div>
+
+
+                </form>
+              </div>
+            </div>
+            <a class="button alt" (click)="back()">Enviar</a>
+            <a class="button alt" (click)="back()">Cancelar</a>
+          </section>
       </div>
     </div>
   </div>

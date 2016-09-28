@@ -1,24 +1,119 @@
 import { Component } from '@angular/core';
 
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/Rx';
+
+
 @Component({
   moduleId: module.id,
   templateUrl: './contestar-encuestas.html'
 })
 
 
+@Injectable()
 export class ContestarEncuestasComponent {
 
-  public hideList = true;
+  public libros_data;
+  public generos = ['Ficcion', 'Novela', 'Misterio'];
+  public topUsuarios =[
+    {
+      nombre: "Fernando",
+      puntuacion: 160
+    },
+    {
+      nombre: "Manuel",
+      puntuacion: 130
+    },
+    {
+      nombre: "Maria",
+      puntuacion: 90
+    },
+    {
+      nombre: "Raul",
+      puntuacion: 80
+    },
+    {
+      nombre: "Toño",
+      puntuacion: 65
+    }
+  ];
+  constructor(private http: Http) {
+
+    http.get("http://semanaiaaa.herokuapp.com/libro")
+        .map(response => response.json())
+        .subscribe(
+          data => this.libros_data = data,
+          err => this.logError(err),
+          () => this.success()
+      );
+   }
+
+   success(){
+     console.log("asda");
+     console.log(this.libros_data)
+   }
+
+   logError(err) {
+    console.error('There was an error: ' + err);
+  }
+
+  public libros = [{
+    genero: 'fantasia',
+    id: 0,
+    titulo: "Harry Potter",
+    imagen: "/img/books/harry-potter.jpg",
+    descripcion: "Siempre fue difícil ser Harry Potter y no es mucho más fácil ahora que él es un empleado con exceso de trabajo del Ministerio de Magia, un marido y padre de tres hijos en edad escolar. Mientras Harry se enfrenta con un pasado que se niega a..."
+  },
+  {
+    genero:'novela',
+    seccion: 'fantasia',
+    id: 1,
+    titulo: "El principito",
+    imagen: "/img/books/principito.png",
+    descripcion: "El principito es un cuento poético que viene acompañado de ilustraciones hechas con acuarelas por el mismo Saint-Exupéry.10 En él, un piloto se encuentra perdido en el desierto del Sahara después de que su avión sufriera una avería, pero para..."
+  },
+  {
+    genero:'novela',
+    id: 2,
+    titulo: "Los juegos del Hambre",
+    imagen: "/img/books/hunger-games.jpg",
+    descripcion: "Cada año, en las ruinas de lo que en su día fue Norteamérica, el Capitolio de la nación de Panem obliga a cada uno de sus doce distritos a enviar un chico o chica adolescente a competir en los Juegos del Hambre. Los Juegos del..."
+  }
+];
+
+
+  public showList = true;
+  public showSurvey = false;
+  public showCreate = false;
 
   public nombreDeLaEncuesta = "Harry Potter";
   public encuestaActualId = 0;
 
+
+
+
+
+
+
   back(){
-    this.hideList = true;
+    this.showList = true;
+    this.showSurvey = false;
+    this.showCreate = false;
   }
 
   fn (id){
-    this.hideList = false;
+    this.showList = false;
+    this.showSurvey = true;
+    this.showCreate = false;
+    this.nombreDeLaEncuesta = this.libros[id].titulo;
+    this.encuestaActualId = id;
+  }
+
+  fn2 (id){
+    this.showList = false;
+    this.showSurvey = false;
+    this.showCreate = true;
     this.nombreDeLaEncuesta = this.libros[id].titulo;
     this.encuestaActualId = id;
   }
@@ -27,25 +122,6 @@ export class ContestarEncuestasComponent {
     
   }
 
-  public libros = [{
-    id: 0,
-    titulo: "Harry Potter",
-    imagen: "/img/books/harry-potter.jpg",
-    descripcion: "Siempre fue difícil ser Harry Potter y no es mucho más fácil ahora que él es un empleado con exceso de trabajo del Ministerio de Magia, un marido y padre de tres hijos en edad escolar. Mientras Harry se enfrenta con un pasado que se niega a..."
-  },
-  {
-    id: 1,
-    titulo: "El principito",
-    imagen: "/img/books/principito.png",
-    descripcion: "El principito es un cuento poético que viene acompañado de ilustraciones hechas con acuarelas por el mismo Saint-Exupéry.10 En él, un piloto se encuentra perdido en el desierto del Sahara después de que su avión sufriera una avería, pero para..."
-  },
-  {
-    id: 2,
-    titulo: "Los juegos del Hambre",
-    imagen: "/img/books/hunger-games.jpg",
-    descripcion: "Cada año, en las ruinas de lo que en su día fue Norteamérica, el Capitolio de la nación de Panem obliga a cada uno de sus doce distritos a enviar un chico o chica adolescente a competir en los Juegos del Hambre. Los Juegos del..."
-  }
-];
 
 public preguntas = [
   {
